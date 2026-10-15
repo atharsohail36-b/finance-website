@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Athar Sohail — Founder of WealthCraft. Building professional finance tools for everyday wealth building in Pakistan and beyond.">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:title" content="About | WealthCraft">
+  <meta property="og:description" content="Meet Athar Sohail, the builder behind WealthCraft — privacy-first finance tools & guides.">
+  <meta property="og:type" content="website">
+  <title>About | WealthCraft by Muhammad Hamza</title>
+  <style>
+    /* ===== CSS VARIABLES (Same as index.html for consistency) ===== */
+    :root {
+      --navy: #0f172a; --slate: #1e293b; --teal: #0d9488; --teal-dark: #0f766e;
+      --bg: #ffffff; --bg-alt: #f8fafc; --text: #334155; --text-light: #64748b;
+      --border: #e2e8f0; --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --radius: 8px; --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-serif: Georgia, 'Times New Roman', serif;
+      --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: var(--teal); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--teal-dark); }
+    img { max-width: 100%; height: auto; display: block; }
+    ul { list-style: none; }
+    button, input { font-family: inherit; }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--navy); line-height: 1.2; margin-bottom: 0.75rem; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; }
+    h2 { font-size: clamp(1.75rem, 4vw, 2.25rem); }
+    h3 { font-size: clamp(1.25rem, 3vw, 1.5rem); }
+    p { margin-bottom: 1rem; }
+    .text-center { text-align: center; }
+    .text-muted { color: var(--text-light); }
+
+    /* ===== LAYOUT ===== */
+    .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 4rem 0; }
+    .section-alt { background: var(--bg-alt); }
+
+    /* ===== HEADER & NAV ===== */
+    .site-header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
+    .logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--navy); }
+    .logo span { color: var(--teal); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: var(--text); font-weight: 500; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--teal); transition: width var(--transition); }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a:hover::after { width: 100%; }
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--navy); margin: 5px 0; transition: var(--transition); }
+
+    /* ===== ABOUT HERO ===== */
+    .about-hero { padding: 4rem 0 3rem; background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%); }
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center; }
+    @media (min-width: 768px) { .about-grid { grid-template-columns: 1.2fr 1fr; } }
+    .about-content h1 { margin-bottom: 1rem; }
+    .about-content p { font-size: 1.05rem; color: var(--text-light); margin-bottom: 1.5rem; }
+    .about-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; font-size: 0.9rem; }
+    .meta-item { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text); }
+    .meta-icon { color: var(--teal); font-size: 1.1rem; }
+
+    .about-image { display: flex; justify-content: center; }
+    .avatar-placeholder { width: 220px; height: 220px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--teal-dark)); display: flex; align-items: center; justify-content: center; color: #fff; font-family: var(--font-serif); font-size: 3rem; font-weight: 700; box-shadow: var(--shadow-lg); border: 4px solid var(--bg); }
+
+    /* ===== STORY & MISSION ===== */
+    .story-section { display: grid; gap: 2rem; }
+    .story-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; box-shadow: var(--shadow-sm); }
+    .story-card h3 { margin-bottom: 0.75rem; }
+    .story-card p { color: var(--text-light); }
+
+    /* ===== SKILLS / TOOLS ===== */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .skill-tag { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 50px; padding: 0.5rem 1rem; text-align: center; font-size: 0.85rem; font-weight: 500; color: var(--text); }
+
+    /* ===== VALUES ===== */
+    .values-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .value-item { display: flex; gap: 0.75rem; align-items: flex-start; }
+    .value-icon { color: var(--teal); font-size: 1.25rem; margin-top: 0.2rem; flex-shrink: 0; }
+
+    /* ===== CTA ===== */
+    .cta-box { background: var(--navy); color: #fff; border-radius: var(--radius); padding: 2.5rem 2rem; text-align: center; margin-top: 2rem; }
+    .cta-box h3 { color: #fff; margin-bottom: 0.75rem; }
+    .cta-box p { color: #cbd5e1; margin-bottom: 1.5rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all var(--transition); border: none; outline: none; }
+    .btn-primary { background: var(--teal); color: #fff; }
+    .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn-outline { background: transparent; border: 2px solid var(--teal); color: var(--teal); }
+    .btn-outline:hover { background: var(--teal); color: #fff; }
+
+    /* ===== FOOTER (Same as index) ===== */
+    .site-footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding: 3rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+    .footer-col h4 { font-family: var(--font-sans); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; color: var(--text); }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col a { color: var(--text-light); font-size: 0.9rem; }
+    .footer-col a:hover { color: var(--teal); }
+    .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-light); }
+    .social-links { display: flex; gap: 1rem; }
+    .social-links a { font-size: 1.25rem; color: var(--text-light); transition: color var(--transition); }
+    .social-links a:hover { color: var(--teal); }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-on-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); animation: fadeInUp 0.6s ease forwards; }
+    @media (prefers-reduced-motion: reduce) { .animate-on-scroll { animation: none; opacity: 1; transform: none; transition: none; } }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links { position: fixed; top: 4.5rem; left: 0; width: 100%; background: var(--bg); flex-direction: column; padding: 1.5rem; gap: 1.25rem; border-bottom: 1px solid var(--border); transform: translateY(-150%); transition: transform var(--transition); }
+      .nav-links.active { transform: translateY(0); box-shadow: var(--shadow-lg); }
+      .mobile-toggle { display: block; }
+      .about-hero { padding: 3rem 0 2rem; }
+      .section { padding: 3rem 0; }
+      .cta-box { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">Wealth<span>Craft</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html#tools">Tools</a>
+        <a href="index.html#guides">Guides</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABOUT HERO -->
+    <section class="about-hero">
+      <div class="container about-grid">
+        <div class="about-content animate-on-scroll">
+          <h1>Hi, I'm Muhammad Hamza</h1>
+          <p>Builder of <strong>WealthCraft</strong> — a collection of professional, privacy-first finance tools and guides designed to help everyday people plan, calculate, and grow their wealth with clarity and confidence.</p>
+          <p>Based in Darya Khan, District Bhakkar, Pakistan, I believe that financial literacy should be accessible, simple, and empowering — no jargon, no gatekeeping, just practical tools that work.</p>
+          <div class="about-meta">
+            <span class="meta-item"><span class="meta-icon">📍</span> Darya Khan, Bhakkar, Pakistan</span>
+            <span class="meta-item"><span class="meta-icon">✉️</span> muhammadhamza@gmail.com</span>
+            <span class="meta-item"><span class="meta-icon">📱</span> +92 303 9515171</span>
+          </div>
+        </div>
+        <div class="about-image animate-on-scroll">
+          <div class="avatar-placeholder" aria-label="Athar Sohail">AS</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY & MISSION -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center animate-on-scroll">
+          <h2>My Journey & Mission</h2>
+          <p class="text-muted">Why I built WealthCraft</p>
+        </div>
+        <div class="story-section" style="margin-top: 2.5rem;">
+          <div class="story-card animate-on-scroll">
+            <h3>🌱 The Beginning</h3>
+            <p>As someone who started learning about personal finance with limited resources, I experienced firsthand how overwhelming and confusing financial planning can be — especially in our local context. Complex calculators, scattered advice, and tools that didn't understand PKR or local investment options made it harder.</p>
+          </div>
+          <div class="story-card animate-on-scroll">
+            <h3>💡 The Vision</h3>
+            <p>WealthCraft was born from a simple idea: <strong>What if finance tools felt like a trusted friend — clear, honest, and always on your side?</strong> Every calculator, guide, and feature is built with that principle: empower, don't overwhelm.</p>
+          </div>
+          <div class="story-card animate-on-scroll">
+            <h3>🚀 The Commitment</h3>
+            <p>I'm committed to keeping WealthCraft free, private, and ad-light. No hidden trackers, no data selling, no aggressive popups. Just professional tools that respect your time and your trust.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS & TOOLS -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="text-center animate-on-scroll">
+          <h2>Skills & Tools I Use</h2>
+          <p class="text-muted">Building with clarity, one line at a time</p>
+        </div>
+        <div class="skills-grid animate-on-scroll">
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">Vanilla JS</span>
+          <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">Git / GitHub</span>
+          <span class="skill-tag">Vercel / Netlify</span>
+          <span class="skill-tag">SEO Basics</span>
+          <span class="skill-tag">Figma (UI)</span>
+          <span class="skill-tag">AI-Assisted Dev</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center animate-on-scroll">
+          <h2>Core Values</h2>
+          <p class="text-muted">What guides every decision at WealthCraft</p>
+        </div>
+        <div class="values-list animate-on-scroll">
+          <div class="value-item">
+            <span class="value-icon">✓</span>
+            <div><strong>Privacy First</strong><br><span class="text-muted">Your data stays on your device. Always.</span></div>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">✓</span>
+            <div><strong>Clarity Over Complexity</strong><br><span class="text-muted">Simple language, clean design, actionable insights.</span></div>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">✓</span>
+            <div><strong>Local Context</strong><br><span class="text-muted">Built for Pakistan & South Asia — PKR, local taxes, realistic scenarios.</span></div>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">✓</span>
+            <div><strong>Continuous Learning</strong><br><span class="text-muted">I learn, I iterate, I improve — and so will WealthCraft.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="container">
+      <div class="cta-box animate-on-scroll">
+        <h3>Let's Build Your Financial Confidence Together</h3>
+        <p>Try a free tool, read a guide, or just say hello. I'm here to help.</p>
+        <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>WealthCraft</h4>
+          <p class="text-muted" style="font-size: 0.9rem;">Professional finance tools & guides by Athar Sohail. Built with clarity & consistency.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html#tools">Calculators</a></li>
+            <li><a href="index.html#guides">Guides</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="legal/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="legal/terms-conditions.html">Terms of Use</a></li>
+            <li><a href="legal/disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="GitHub">⌨</a>
+          </div>
+          <p class="text-muted" style="margin-top: 1rem; font-size: 0.85rem;">atharsohail36@gmail.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 WealthCraft by Muhammad Hamza. All rights reserved.</span>
+        <span>Built in Darya Khan, Pakistan 🇵🇰</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- INLINE JAVASCRIPT -->
+  <script>
+    // Mobile Navigation Toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      mobileToggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Scroll Animations
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    animateElements.forEach(el => observer.observe(el));
+
+    // Smooth Scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#' || !targetId.startsWith('#')) return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          const headerOffset = 80;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

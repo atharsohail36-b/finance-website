@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How to build a monthly budget that actually works. A practical, step-by-step guide using the 50/30/20 rule, tailored for Pakistan and South Asia.">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:title" content="How to Build a Monthly Budget That Works | WealthCraft Guide">
+  <meta property="og:description" content="Stop guessing where your money goes. Learn a simple, sustainable budgeting system you can start today.">
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2026-01-20">
+  <meta property="article:author" content="Athar Sohail">
+  <title>How to Build a Monthly Budget That Works | WealthCraft Guide</title>
+  <style>
+    /* Same CSS variables and base styles as sip-kya-hai.html */
+    :root {
+      --navy: #0f172a; --slate: #1e293b; --teal: #0d9488; --teal-dark: #0f766e;
+      --bg: #ffffff; --bg-alt: #f8fafc; --text: #334155; --text-light: #64748b;
+      --border: #e2e8f0; --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --radius: 8px; --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-serif: Georgia, 'Times New Roman', serif;
+      --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--teal); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--teal-dark); }
+    img { max-width: 100%; height: auto; display: block; }
+    ul, ol { margin-left: 1.5rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.35rem; }
+    button, input { font-family: inherit; }
+    h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--navy); line-height: 1.3; margin-bottom: 1rem; }
+    h1 { font-size: clamp(2rem, 5vw, 2.75rem); font-weight: 700; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin-top: 2.5rem; }
+    h3 { font-size: clamp(1.25rem, 3vw, 1.5rem); margin-top: 2rem; }
+    p { margin-bottom: 1.25rem; }
+    .text-center { text-align: center; }
+    .text-muted { color: var(--text-light); }
+    .text-success { color: #059669; font-weight: 600; }
+    .lead { font-size: 1.125rem; color: var(--text); font-weight: 400; }
+    .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 3rem 0; }
+    .site-header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
+    .logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--navy); }
+    .logo span { color: var(--teal); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: var(--text); font-weight: 500; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--teal); transition: width var(--transition); }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a:hover::after { width: 100%; }
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--navy); margin: 5px 0; transition: var(--transition); }
+    .blog-hero { padding: 4rem 0 2.5rem; background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%); }
+    .blog-meta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-light); }
+    .blog-meta span { display: inline-flex; align-items: center; gap: 0.35rem; }
+    .blog-category { background: rgba(13, 148, 136, 0.1); color: var(--teal); padding: 0.25rem 0.75rem; border-radius: 50px; font-weight: 500; }
+    .blog-layout { display: grid; gap: 2.5rem; margin-top: 2rem; }
+    @media (min-width: 900px) { .blog-layout { grid-template-columns: 2.5fr 1fr; } }
+    .blog-content { font-size: 1.05rem; }
+    .blog-content p { margin-bottom: 1.5rem; }
+    .blog-content a { font-weight: 500; border-bottom: 2px solid rgba(13, 148, 136, 0.3); }
+    .blog-content a:hover { border-bottom-color: var(--teal); }
+    .toc { background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; position: sticky; top: 6rem; align-self: start; }
+    .toc h4 { margin-bottom: 0.75rem; font-family: var(--font-sans); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .toc ol { margin-left: 1.25rem; }
+    .toc li { margin-bottom: 0.5rem; }
+    .toc a { color: var(--text); font-size: 0.95rem; }
+    .toc a:hover { color: var(--teal); }
+    .callout { background: var(--bg-alt); border-left: 4px solid var(--teal); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .callout.pro { border-left-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
+    .callout.warning { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.05); }
+    .callout h4 { margin-bottom: 0.5rem; }
+    .takeaways { background: var(--navy); color: #fff; border-radius: var(--radius); padding: 1.75rem; margin: 2rem 0; }
+    .takeaways h4 { color: #fff; margin-bottom: 0.75rem; }
+    .takeaways ul { margin-left: 1.25rem; color: #cbd5e1; }
+    .takeaways li { margin-bottom: 0.4rem; }
+    .author-box { display: flex; gap: 1rem; align-items: flex-start; background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin: 2.5rem 0; }
+    .author-avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--teal-dark)); display: flex; align-items: center; justify-content: center; color: #fff; font-family: var(--font-serif); font-weight: 700; flex-shrink: 0; }
+    .author-info h4 { margin-bottom: 0.25rem; }
+    .author-info p { margin-bottom: 0; font-size: 0.9rem; color: var(--text-light); }
+    .related-tools { background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin: 2.5rem 0; }
+    .related-tools h4 { margin-bottom: 1rem; }
+    .tool-link { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: var(--bg); border-radius: var(--radius); margin-bottom: 0.75rem; transition: transform var(--transition); }
+    .tool-link:hover { transform: translateX(4px); border: 1px solid var(--teal); }
+    .tool-icon { width: 40px; height: 40px; background: rgba(13, 148, 136, 0.1); color: var(--teal); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .share-bar { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 2rem 0; padding: 1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.9rem; color: var(--text); cursor: pointer; transition: all var(--transition); }
+    .share-btn:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
+    .newsletter-cta { background: var(--navy); color: #fff; border-radius: var(--radius); padding: 2rem; text-align: center; margin: 2.5rem 0; }
+    .newsletter-cta h4 { color: #fff; margin-bottom: 0.75rem; }
+    .newsletter-cta p { color: #cbd5e1; margin-bottom: 1.25rem; }
+    .newsletter-form { display: flex; gap: 0.5rem; max-width: 400px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+    .newsletter-form input { flex: 1; min-width: 200px; padding: 0.75rem 1rem; border: none; border-radius: var(--radius); font-size: 0.95rem; }
+    .newsletter-form button { background: var(--teal); color: #fff; border: none; padding: 0.75rem 1.25rem; border-radius: var(--radius); font-weight: 600; cursor: pointer; }
+    .newsletter-form button:hover { background: var(--teal-dark); }
+    .site-footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding: 3rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+    .footer-col h4 { font-family: var(--font-sans); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; color: var(--text); }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col a { color: var(--text-light); font-size: 0.9rem; }
+    .footer-col a:hover { color: var(--teal); }
+    .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-light); }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-on-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); animation: fadeInUp 0.6s ease forwards; }
+    @media (prefers-reduced-motion: reduce) { .animate-on-scroll { animation: none; opacity: 1; transform: none; transition: none; } }
+    @media (max-width: 900px) { .toc { position: static; } }
+    @media (max-width: 768px) {
+      .nav-links { position: fixed; top: 4.5rem; left: 0; width: 100%; background: var(--bg); flex-direction: column; padding: 1.5rem; gap: 1.25rem; border-bottom: 1px solid var(--border); transform: translateY(-150%); transition: transform var(--transition); }
+      .nav-links.active { transform: translateY(0); box-shadow: var(--shadow-lg); }
+      .mobile-toggle { display: block; }
+      .blog-hero { padding: 3rem 0 2rem; }
+      .section { padding: 2.5rem 0; }
+      .blog-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">Wealth<span>Craft</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#guides">Guides</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <article class="blog-hero">
+      <div class="container">
+        <span class="blog-category">Budgeting & Planning</span>
+        <h1 class="animate-on-scroll">How to Build a Monthly Budget That Actually Works</h1>
+        <div class="blog-meta animate-on-scroll">
+          <span>📅 January 20, 2026</span>
+          <span>⏱️ 7 min read</span>
+          <span>✍️ By Athar Sohail</span>
+        </div>
+        <p class="lead animate-on-scroll">Budgeting doesn't have to mean restriction, spreadsheets, or guilt. In fact, a good budget is the opposite: it's freedom. Freedom to spend on what matters, save for what's next, and sleep peacefully knowing your money has a plan. Here's a practical, step-by-step system you can start today—no finance degree required.</p>
+      </div>
+    </article>
+
+    <section class="section">
+      <div class="container">
+        <div class="blog-layout">
+          <div class="blog-content animate-on-scroll">
+            
+            <h2 id="why-budgets-fail">Why Most Budgets Fail (And How to Avoid It)</h2>
+            <p>Let's be honest: many budgeting attempts crash within weeks. Why? Usually because they're:</p>
+            <ul>
+              <li><strong>Too rigid</strong>: "I can never spend on coffee again" → burnout</li>
+              <li><strong>Too complex</strong>: 50 categories, color-coded spreadsheets → overwhelm</li>
+              <li><strong>Too punishing</strong>: Focused only on cutting, not on building → resentment</li>
+            </ul>
+            <p>The solution? A budget that's <strong>simple, flexible, and values-driven</strong>. That's where the <strong>50/30/20 rule</strong> comes in.</p>
+
+            <div class="callout">
+              <h4>💡 The 50/30/20 Rule, Simplified</h4>
+              <p>Popularized by Senator Elizabeth Warren, this framework divides your after-tax income into three buckets:</p>
+              <ul style="margin-left: 1.5rem; margin-top: 0.75rem;">
+                <li><strong>50% Needs</strong>: Rent, utilities, groceries, transport, minimum debt payments</li>
+                <li><strong>30% Wants</strong>: Dining out, entertainment, hobbies, subscriptions</li>
+                <li><strong>20% Savings & Debt</strong>: Emergency fund, investments, extra debt payments</li>
+              </ul>
+              <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--text-light);">*Percentages are guidelines, not laws. Adjust based on your reality.</p>
+            </div>
+
+            <h2 id="step-by-step">Your 5-Step Budget Setup (Pakistan-Friendly)</h2>
+            
+            <h3>Step 1: Calculate Your True Monthly Income</h3>
+            <p>Start with what actually hits your bank account—not your "expected" salary. Include:</p>
+            <ul>
+              <li>Base salary (after taxes and deductions)</li>
+              <li>Freelance income (use a 3-month average if variable)</li>
+              <li>Side hustle earnings, bonuses, or allowances</li>
+            </ul>
+            <p class="text-muted" style="font-size: 0.9rem;">💡 Tip: If your income fluctuates, budget based on your <em>lowest</em> expected month. Treat surplus months as "bonus" savings.</p>
+
+            <h3>Step 2: Track Your Last 30 Days (No Judgment)</h3>
+            <p>Before you plan forward, look backward. For one month:</p>
+            <ol>
+              <li>Save every receipt or use a notes app</li>
+              <li>Categorize each expense as Need, Want, or Savings/Debt</li>
+              <li>Total each category at month-end</li>
+            </ol>
+            <p>This isn't about shame—it's about awareness. You can't change what you don't measure.</p>
+
+            <h3>Step 3: Apply the 50/30/20 Framework</h3>
+            <p>Using your income from Step 1:</p>
+            <ul>
+              <li>Calculate 50%, 30%, and 20% amounts</li>
+              <li>Compare to your actual spending from Step 2</li>
+              <li>Identify gaps: "I'm spending 70% on Needs—where can I adjust?"</li>
+            </ul>
+            
+            <div class="callout pro">
+              <h4>🚀 Pro Adjustment for High-Cost Cities</h4>
+              <p>If rent alone takes 40% of your income (common in Karachi, Lahore, Islamabad), try a <strong>60/20/20</strong> split temporarily. The goal isn't perfection—it's progress. Rebalance as your income grows.</p>
+            </div>
+
+            <h3>Step 4: Automate the Boring Stuff</h3>
+            <p>Willpower is overrated. Systems win. Set up:</p>
+            <ul>
+              <li><strong>Auto-transfer to savings</strong> on salary day (even PKR 500 counts)</li>
+              <li><strong>Bill auto-pay</strong> for utilities to avoid late fees</li>
+              <li><strong>Cash envelope or digital wallet</strong> for "Wants" spending</li>
+            </ul>
+            <p>When savings happen automatically, you spend what's left—consciously.</p>
+
+            <h3>Step 5: Review & Adjust Monthly (15 Minutes Max)</h3>
+            <p>At month-end, ask:</p>
+            <ul>
+              <li>Did I stay close to my targets?</li>
+              <li>What surprised me?</li>
+              <li>What one change would make next month easier?</li>
+            </ul>
+            <p>Budgeting is a practice, not a one-time setup. Small tweaks compound into big results.</p>
+
+            <div class="takeaways">
+              <h4>🔑 Key Takeaways</h4>
+              <ul>
+                <li>Start with awareness, not austerity</li>
+                <li>Use 50/30/20 as a compass, not a cage</li>
+                <li>Automate savings to remove decision fatigue</li>
+                <li>Review monthly—progress > perfection</li>
+              </ul>
+            </div>
+
+            <h2 id="common-pitfalls">3 Common Pitfalls (And How to Dodge Them)</h2>
+            
+            <h4>🚫 "I'll Start Next Month"</h4>
+            <p>Delaying is the enemy of progress. Start today with what you have—even if it's just tracking expenses for one week.</p>
+            
+            <h4>🚫 "Budgeting Means No Fun"</h4>
+            <p>Your "Wants" category exists for a reason. Budgeting isn't about deprivation; it's about intentional spending. Love chai with friends? Budget for it—guilt-free.</p>
+            
+            <h4>🚫 "My Income Is Too Irregular"</h4>
+            <p>Variable income? Budget based on your <em>baseline</em> (lowest expected month). Treat surplus months as "bonus" allocations to savings or debt.</p>
+
+            <h2 id="tools-to-help">Free Tools to Make It Easier</h2>
+            <p>You don't need expensive apps. Start simple:</p>
+            <ul>
+              <li><strong>Pen & paper</strong>: Sometimes analog is fastest</li>
+              <li><strong>Google Sheets</strong>: Free, flexible, accessible anywhere</li>
+              <li><strong>WealthCraft Budget Tracker</strong>: Our free, privacy-first tool for 50/30/20 planning</li>
+            </ul>
+
+            <div class="author-box">
+              <div class="author-avatar">AS</div>
+              <div class="author-info">
+                <h4>About the Author</h4>
+                <p><strong>Athar Sohail</strong> is the founder of WealthCraft. Based in Darya Khan, Pakistan, he builds free, privacy-first finance tools to help everyday people plan and grow their wealth with clarity. He believes financial literacy should be simple, accessible, and empowering.</p>
+              </div>
+            </div>
+
+            <div class="share-bar">
+              <span style="font-weight: 500; margin-right: 0.5rem;">Share this guide:</span>
+              <button class="share-btn" onclick="shareTo('twitter')">𝕏 Twitter</button>
+              <button class="share-btn" onclick="shareTo('whatsapp')">WhatsApp</button>
+              <button class="share-btn" onclick="shareTo('copy')">🔗 Copy Link</button>
+            </div>
+
+            <div class="related-tools">
+              <h4>🛠️ Try These Tools Next</h4>
+              <a href="../tools/budget-tracker.html" class="tool-link">
+                <div class="tool-icon">📊</div>
+                <div>
+                  <strong>Budget Tracker</strong><br>
+                  <span class="text-muted" style="font-size: 0.85rem;">Plan your 50/30/20 allocation in seconds</span>
+                </div>
+              </a>
+              <a href="../tools/sip-calculator.html" class="tool-link">
+                <div class="tool-icon">📈</div>
+                <div>
+                  <strong>SIP Growth Planner</strong><br>
+                  <span class="text-muted" style="font-size: 0.85rem;">See how your savings can grow over time</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="newsletter-cta">
+              <h4>📬 Get Practical Finance Tips, Monthly</h4>
+              <p>Join 2,500+ readers. No spam—just actionable insights and tool updates.</p>
+              <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+              </form>
+            </div>
+
+          </div>
+
+          <aside class="toc animate-on-scroll">
+            <h4>On This Page</h4>
+            <ol>
+              <li><a href="#why-budgets-fail">Why Budgets Fail</a></li>
+              <li><a href="#step-by-step">5-Step Setup</a></li>
+              <li><a href="#common-pitfalls">Common Pitfalls</a></li>
+              <li><a href="#tools-to-help">Free Tools</a></li>
+            </ol>
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+              <h4 style="margin-bottom: 0.5rem;">💡 Quick Action</h4>
+              <p style="font-size: 0.9rem; margin-bottom: 0.75rem;">Ready to plan? Try our free budget tool.</p>
+              <a href="../tools/budget-tracker.html" class="btn btn-primary" style="width: 100%; text-align: center;">Open Budget Tracker</a>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col"><h4>WealthCraft</h4><p class="text-muted" style="font-size:0.9rem;">By Athar Sohail • Darya Khan, Pakistan</p></div>
+        <div class="footer-col"><h4>Explore</h4><ul><li><a href="../index.html#tools">Tools</a></li><li><a href="../index.html#guides">More Guides</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul><li><a href="../legal/privacy-policy.html">Privacy</a></li><li><a href="../legal/terms-conditions.html">Terms</a></li></ul></div>
+        <div class="footer-col"><h4>Connect</h4><p class="text-muted" style="font-size:0.85rem;">atharsohail36@gmail.com</p></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 WealthCraft. All rights reserved.</span><span>Built in Pakistan 🇵🇰</span></div>
+    </div>
+  </footer>
+
+  <script>
+    // Same JS as sip-kya-hai.html (mobile nav, animations, share, newsletter, TOC highlight)
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      mobileToggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          navLinks.classList.remove('active');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+      animateElements.forEach(el => observer.observe(el));
+    } else { animateElements.forEach(el => el.classList.add('visible')); }
+    document.querySelectorAll('.toc a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        if (target) {
+          const headerOffset = 80;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      });
+    });
+    function shareTo(platform) {
+      const url = encodeURIComponent(window.location.href);
+      const title = encodeURIComponent(document.querySelector('h1').textContent);
+      let shareUrl = '';
+      if (platform === 'twitter') shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+      else if (platform === 'whatsapp') shareUrl = `https://wa.me/?text=${title}%20${url}`;
+      else if (platform === 'copy') { navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied!')); return; }
+      window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+    function handleNewsletter(e) { e.preventDefault(); alert('Thank you for subscribing!'); e.target.reset(); }
+    const sections = document.querySelectorAll('.blog-content h2, .blog-content h3');
+    const tocLinks = document.querySelectorAll('.toc a');
+    if (sections.length > 0 && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            tocLinks.forEach(link => {
+              link.style.color = '';
+              if (link.getAttribute('href') === `#${id}`) {
+                link.style.color = 'var(--teal)';
+                link.style.fontWeight = '600';
+              }
+            });
+          }
+        });
+      }, { threshold: 0.3, rootMargin: '-20% 0px -70% 0px' });
+      sections.forEach(section => observer.observe(section));
+    }
+  </script>
+</body>
+</html>

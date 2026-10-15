@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free Loan & EMI Calculator — Plan your home, car, or personal loan payments with clarity. Privacy-first, no data stored.">
+  <meta name="theme-color" content="#0f172a">
+  <title>Loan & EMI Calculator | WealthCraft</title>
+  <style>
+    /* Same CSS variables and base styles as sip-calculator.html (copy from above) */
+    /* For brevity, assuming same design system — in production, extract to shared CSS */
+    :root {
+      --navy: #0f172a; --slate: #1e293b; --teal: #0d9488; --teal-dark: #0f766e;
+      --bg: #ffffff; --bg-alt: #f8fafc; --text: #334155; --text-light: #64748b;
+      --border: #e2e8f0; --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --radius: 8px; --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-serif: Georgia, 'Times New Roman', serif;
+      --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: var(--teal); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--teal-dark); }
+    img { max-width: 100%; height: auto; display: block; }
+    ul { list-style: none; }
+    button, input, select { font-family: inherit; }
+    h1, h2, h3 { font-family: var(--font-serif); color: var(--navy); line-height: 1.2; margin-bottom: 0.75rem; }
+    h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); }
+    p { margin-bottom: 1rem; }
+    .text-center { text-align: center; }
+    .text-muted { color: var(--text-light); }
+    .text-success { color: #059669; font-weight: 600; }
+    .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 3rem 0; }
+    .site-header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
+    .logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--navy); }
+    .logo span { color: var(--teal); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: var(--text); font-weight: 500; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--teal); transition: width var(--transition); }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--teal); }
+    .nav-links a.active::after { width: 100%; }
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--navy); margin: 5px 0; transition: var(--transition); }
+    .tool-header { padding: 3rem 0 2rem; background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%); }
+    .tool-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(13, 148, 136, 0.1); color: var(--teal); padding: 0.35rem 0.75rem; border-radius: 50px; font-size: 0.8rem; font-weight: 500; margin-bottom: 1rem; }
+    .calculator-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; box-shadow: var(--shadow-sm); margin-bottom: 2rem; }
+    .form-grid { display: grid; gap: 1.25rem; }
+    @media (min-width: 640px) { .form-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .form-grid { grid-template-columns: repeat(4, 1fr); } }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-weight: 500; color: var(--navy); font-size: 0.9rem; }
+    .form-control { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: var(--radius); font-size: 1rem; background: var(--bg); color: var(--text); transition: border-color var(--transition), box-shadow var(--transition); }
+    .form-control:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15); }
+    .form-hint { font-size: 0.8rem; color: var(--text-light); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all var(--transition); border: none; outline: none; }
+    .btn-primary { background: var(--teal); color: #fff; }
+    .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn-outline { background: transparent; border: 2px solid var(--teal); color: var(--teal); }
+    .btn-outline:hover { background: var(--teal); color: #fff; }
+    .btn-group { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
+    .results-grid { display: grid; gap: 1.5rem; margin-top: 2rem; }
+    @media (min-width: 768px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+    .result-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .result-value { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; color: var(--navy); margin: 0.5rem 0; }
+    .result-label { color: var(--text-light); font-size: 0.9rem; }
+    .breakdown-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .breakdown-row.total { font-weight: 600; color: var(--navy); border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.75rem; }
+    .chart-container { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-top: 2rem; }
+    .amortization-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.85rem; }
+    .amortization-table th, .amortization-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+    .amortization-table th { background: var(--bg-alt); font-weight: 600; color: var(--navy); }
+    .amortization-table tr:hover { background: var(--bg-alt); }
+    .info-card { background: var(--bg); border-left: 4px solid var(--teal); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.25rem 1.5rem; margin-top: 1.5rem; }
+    .info-card h4 { margin-bottom: 0.5rem; }
+    .info-card ul { padding-left: 1.25rem; margin-top: 0.5rem; }
+    .info-card li { margin-bottom: 0.35rem; font-size: 0.9rem; color: var(--text-light); }
+    .action-bar { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .action-btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.9rem; color: var(--text); cursor: pointer; transition: all var(--transition); }
+    .action-btn:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
+    .action-btn svg { width: 16px; height: 16px; }
+    .site-footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding: 3rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+    .footer-col h4 { font-family: var(--font-sans); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; color: var(--text); }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col a { color: var(--text-light); font-size: 0.9rem; }
+    .footer-col a:hover { color: var(--teal); }
+    .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-light); }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-on-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); animation: fadeInUp 0.6s ease forwards; }
+    @media (prefers-reduced-motion: reduce) { .animate-on-scroll { animation: none; opacity: 1; transform: none; transition: none; } }
+    @media (max-width: 768px) {
+      .nav-links { position: fixed; top: 4.5rem; left: 0; width: 100%; background: var(--bg); flex-direction: column; padding: 1.5rem; gap: 1.25rem; border-bottom: 1px solid var(--border); transform: translateY(-150%); transition: transform var(--transition); }
+      .nav-links.active { transform: translateY(0); box-shadow: var(--shadow-lg); }
+      .mobile-toggle { display: block; }
+      .tool-header { padding: 2rem 0 1.5rem; }
+      .section { padding: 2.5rem 0; }
+      .calculator-card { padding: 1.5rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">Wealth<span>Craft</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#guides">Guides</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-header">
+      <div class="container text-center animate-on-scroll">
+        <span class="tool-badge">🏦 Loan Calculator</span>
+        <h1>Loan & EMI Planner</h1>
+        <p class="text-muted">Calculate your monthly EMI, total interest, and see a year-by-year amortization schedule. All calculations in your browser.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="calculator-card animate-on-scroll">
+          <form id="emiForm">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="principal">Loan Amount (PKR)</label>
+                <input type="number" id="principal" class="form-control" value="1000000" min="10000" step="10000" required>
+                <span class="form-hint">e.g., 1,000,000</span>
+              </div>
+              <div class="form-group">
+                <label for="rate">Annual Interest Rate (%)</label>
+                <input type="number" id="rate" class="form-control" value="14" min="1" max="30" step="0.25" required>
+                <span class="form-hint">Home loan: 12-16%</span>
+              </div>
+              <div class="form-group">
+                <label for="tenure">Loan Tenure (Years)</label>
+                <input type="number" id="tenure" class="form-control" value="5" min="1" max="30" required>
+                <span class="form-hint">Shorter = less interest</span>
+              </div>
+              <div class="form-group">
+                <label for="type">Loan Type</label>
+                <select id="type" class="form-control">
+                  <option value="home">Home Loan</option>
+                  <option value="car">Car Loan</option>
+                  <option value="personal">Personal Loan</option>
+                  <option value="business">Business Loan</option>
+                </select>
+                <span class="form-hint">For reference only</span>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button type="submit" class="btn btn-primary">Calculate EMI</button>
+              <button type="button" id="resetBtn" class="btn btn-outline">Reset</button>
+            </div>
+          </form>
+        </div>
+
+        <div id="resultsSection" class="animate-on-scroll" style="display: none;">
+          <div class="results-grid">
+            <div class="result-card">
+              <div class="result-label">Monthly EMI</div>
+              <div class="result-value" id="emiAmount">PKR 0</div>
+              <div class="breakdown-row"><span>Principal:</span> <span id="principalDisplay">PKR 0</span></div>
+              <div class="breakdown-row"><span>Rate:</span> <span id="rateDisplay">0%</span></div>
+            </div>
+            <div class="result-card">
+              <div class="result-label">Total Interest</div>
+              <div class="result-value text-success" id="totalInterest">PKR 0</div>
+              <div class="breakdown-row"><span>Tenure:</span> <span id="tenureDisplay">0 years</span></div>
+              <div class="breakdown-row"><span>Total Payments:</span> <span id="totalPayments">PKR 0</span></div>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <h3>Amortization Schedule (First 5 Years)</h3>
+            <div style="overflow-x: auto; margin-top: 1rem;">
+              <table class="amortization-table" id="amortizationTable">
+                <thead>
+                  <tr><th>Year</th><th>Opening Balance</th><th>Principal Paid</th><th>Interest Paid</th><th>Closing Balance</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h4>💡 Smart Borrowing Tips</h4>
+            <ul>
+              <li>Make one extra EMI per year to reduce tenure significantly</li>
+              <li>Compare processing fees & prepayment charges across banks</li>
+              <li>Opt for floating rates if you expect rates to fall</li>
+              <li>Keep EMI ≤ 40% of your monthly income for financial health</li>
+            </ul>
+          </div>
+
+          <div class="action-bar">
+            <button class="action-btn" id="printBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Print Schedule
+            </button>
+            <a href="../index.html#guides" class="action-btn" style="text-decoration: none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              Loan Guide
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col"><h4>WealthCraft</h4><p class="text-muted" style="font-size:0.9rem;">By Athar Sohail • Darya Khan, Pakistan</p></div>
+        <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="../index.html#tools">Tools</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul><li><a href="../legal/privacy-policy.html">Privacy</a></li><li><a href="../legal/terms-conditions.html">Terms</a></li></ul></div>
+        <div class="footer-col"><h4>Connect</h4><p class="text-muted" style="font-size:0.85rem;">atharsohail36@gmail.com</p></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 WealthCraft. All rights reserved.</span><span>Built in Pakistan 🇵🇰</span></div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav, scroll animations (same as sip-calculator)
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      mobileToggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          navLinks.classList.remove('active');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      animateElements.forEach(el => observer.observe(el));
+    } else {
+      animateElements.forEach(el => el.classList.add('visible'));
+    }
+
+    // EMI Calculator Logic
+    function formatPKR(n) { return 'PKR ' + Math.round(n).toLocaleString('en-PK'); }
+
+    function calculateEMI(principal, annualRate, years) {
+      const r = annualRate / 100 / 12;
+      const n = years * 12;
+      const emi = principal * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+      const totalPayment = emi * n;
+      const totalInterest = totalPayment - principal;
+      return { emi, totalInterest, totalPayment };
+    }
+
+    function generateAmortization(principal, annualRate, years, maxRows = 5) {
+      const r = annualRate / 100 / 12;
+      const n = years * 12;
+      const emi = principal * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+      let balance = principal;
+      const rows = [];
+
+      for (let year = 1; year <= Math.min(years, maxRows); year++) {
+        let yearPrincipal = 0, yearInterest = 0;
+        for (let month = 0; month < 12 && balance > 0; month++) {
+          const interest = balance * r;
+          const principalPaid = emi - interest;
+          balance -= principalPaid;
+          yearInterest += interest;
+          yearPrincipal += principalPaid;
+          if (balance < 0) balance = 0;
+        }
+        rows.push({
+          year,
+          opening: principal - (rows.reduce((s, r) => s + r.principal, 0)),
+          principal: Math.round(yearPrincipal),
+          interest: Math.round(yearInterest),
+          closing: Math.max(0, Math.round(balance))
+        });
+      }
+      return rows;
+    }
+
+    const emiForm = document.getElementById('emiForm');
+    const resultsSection = document.getElementById('resultsSection');
+    const resetBtn = document.getElementById('resetBtn');
+
+    emiForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const P = parseFloat(document.getElementById('principal').value);
+      const R = parseFloat(document.getElementById('rate').value);
+      const Y = parseInt(document.getElementById('tenure').value);
+
+      const { emi, totalInterest, totalPayment } = calculateEMI(P, R, Y);
+      const schedule = generateAmortization(P, R, Y);
+
+      document.getElementById('emiAmount').textContent = formatPKR(emi);
+      document.getElementById('principalDisplay').textContent = formatPKR(P);
+      document.getElementById('rateDisplay').textContent = `${R}%`;
+      document.getElementById('totalInterest').textContent = formatPKR(totalInterest);
+      document.getElementById('tenureDisplay').textContent = `${Y} year${Y>1?'s':''}`;
+      document.getElementById('totalPayments').textContent = formatPKR(totalPayment);
+
+      // Render table
+      const tbody = document.querySelector('#amortizationTable tbody');
+      tbody.innerHTML = '';
+      schedule.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${row.year}</td><td>${formatPKR(row.opening)}</td><td>${formatPKR(row.principal)}</td><td class="text-success">${formatPKR(row.interest)}</td><td>${formatPKR(row.closing)}</td>`;
+        tbody.appendChild(tr);
+      });
+
+      resultsSection.style.display = 'block';
+      resultsSection.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    resetBtn.addEventListener('click', () => {
+      emiForm.reset();
+      resultsSection.style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+    window.addEventListener('load', () => emiForm.requestSubmit());
+  </script>
+</body>
+</html>
